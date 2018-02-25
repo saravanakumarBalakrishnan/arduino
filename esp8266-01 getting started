@@ -1,0 +1,16 @@
+while starting to esp01
+
+if we use arduino (witout microcontroller) as ttl programmer
+ *we have to provide direct connection
+    1. TX  to TX
+    2. RX to RX
+    3. GPIO to GND
+    4. RST  to VCC
+   In arduino ide just select the esp module and left the settings as it is
+   
+   * If we use ardduino onboard power supply to power up the esp
+      use 5V pin for RST 
+          3.3v  for VCC
+          
+          ELSE u face error like espcomm_upload_memfailed     issue.
+   
