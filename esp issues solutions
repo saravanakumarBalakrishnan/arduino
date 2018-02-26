@@ -1,0 +1,6 @@
+while using esp with arduin core total AT firmware will erase. so after that it culd not respond the AT comands.
+
+so we  have to upload AT firmware . connection are normal boot connection.
+follow raviparmer tutorial.
+
+GIVE 5v for VCC and RST. god  in this configuration
