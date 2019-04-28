@@ -1,0 +1,83 @@
+const int pingPin = 7; // Trigger Pin of Ultrasonic Sensor
+const int echoPin = 6; // Echo Pin of Ultrasonic Sensor
+const int Motor_backleft =5;
+const int Motor_backrigh =4;
+const int Motor_fronteft =3;
+const int Motor_frontrigh =2;
+   long duration, inches, cm;
+   int incomingByte; 
+void setup() {
+   Serial.begin(9600); // Starting Serial Terminal
+    pinMode(pingPin, OUTPUT);
+     pinMode(Motor_backleft, OUTPUT);
+      pinMode(Motor_backrigh, OUTPUT);
+          pinMode(Motor_fronteft, OUTPUT);
+      pinMode(Motor_frontrigh, OUTPUT);
+}
+
+void   motor_driver()
+{
+  digitalWrite(Motor_backleft, HIGH);
+  digitalWrite(Motor_backrigh, HIGH);
+  delay(500);
+  digitalWrite(Motor_backleft, HIGH);
+  digitalWrite(Motor_backrigh, LOW);
+  delay(500);
+}
+
+void serial_controll()
+{
+ if (Serial.available() > 0) {
+    // read the oldest byte in the serial buffer:
+    incomingByte = Serial.read();
+    //Start the vehicle:
+    if (incomingByte == 'F') {
+      Serial.print("Front");
+       digitalWrite(Motor_fronteft, HIGH);
+      digitalWrite(Motor_frontrigh, LOW);
+              digitalWrite(Motor_backleft, HIGH);
+        digitalWrite(Motor_backrigh, LOW);
+    }
+    //Stop the vehicle:
+    if (incomingByte == 'B') {
+      Serial.print("Back");
+              digitalWrite(Motor_fronteft, LOW);
+      digitalWrite(Motor_frontrigh, HIGH);
+              digitalWrite(Motor_backleft, LOW);
+        digitalWrite(Motor_backrigh, HIGH);
+    }
+
+        if (incomingByte == 'R') {
+          Serial.print("left");
+              digitalWrite(Motor_fronteft, LOW);
+      digitalWrite(Motor_frontrigh, LOW);
+              digitalWrite(Motor_backleft, HIGH);
+        digitalWrite(Motor_backrigh, LOW);
+    }
+
+    
+        if (incomingByte == 'L') {
+          Serial.print("Right");
+              digitalWrite(Motor_fronteft, HIGH);
+      digitalWrite(Motor_frontrigh, LOW);
+              digitalWrite(Motor_backleft, LOW);
+        digitalWrite(Motor_backrigh, LOW);
+    }
+  }
+  
+}
+void loop() {
+
+ // ultrsnic();
+  //motor_driver();
+  serial_controll();
+   
+}
+
+long microsecondsToInches(long microseconds) {
+   return microseconds / 74 / 2;
+}
+
+long microsecondsToCentimeters(long microseconds) {
+   return microseconds / 29 / 2;
+}
