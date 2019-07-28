@@ -66,4 +66,9 @@ void loop() {
   Serial.print(" *C ");
   Serial.print(hif);
   Serial.println(" *F");*/
+  
+  if (t>10)
+  {
+    Serial.println("Warning");
+  }
 }
