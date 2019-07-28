@@ -1,6 +1,6 @@
 // Example testing sketch for various DHT humidity/temperature sensors
 // Written by ladyada, public domain
-
+//here i used digital pin 5 for 
 #include "DHT.h"
 
 #define DHTPIN 5    // what digital pin we're connected to
